@@ -58,8 +58,28 @@ functions work, and the tab stays open when it ends so you can read the output.
 In the window: click a tab to switch to it, or use `Ctrl+b` then `n` / `p`. Close a
 finished tab with `Enter`; close the window to stop everything.
 
-Icons are names from your icon theme (`network-vpn`, `media-playback-start`,
-`utilities-terminal`...) or a path to an image.
+### Icons
+
+`--icon` takes either a name from your icon theme or an image file:
+
+```bash
+retro-console add "VPN" --run vpn --tab VPN --icon network-vpn            # theme icon
+retro-console add "VPN" --run vpn --tab VPN --icon ~/Pictures/icons/vpn.png  # your image
+```
+
+- **Your own image**: PNG or SVG (square works best, e.g. 128x128). Relative paths and
+  `~` are turned into the absolute path the desktop needs. Keep the image where it is:
+  the launcher points to it.
+- **Theme icons**: list the ones matching a word, e.g. "network":
+
+  ```bash
+  find /usr/share/icons -name '*network*' -printf '%f\n' | sed 's/\.[^.]*$//; s/-symbolic$//' | sort -u
+  ```
+
+  Handy ones: `network-vpn`, `security-high`, `media-playback-start`,
+  `media-playback-stop`, `process-stop`, `network-transmit-receive`, `utilities-terminal`.
+- **Changing the icon of an existing launcher**: run `add` again with the same name; it
+  replaces the launcher.
 
 ## Configuration
 

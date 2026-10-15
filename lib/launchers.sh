@@ -16,20 +16,39 @@ launcher_key() {
   sed -n "s/^$2=//p" "$1" | head -n1
 }
 
-# usage: add <name> --run <command> [--tab <tab>] [--icon <icon>]
-add() {
-  local name="${1:-}" run="" tab="" icon=utilities-terminal
-  shift || true
+parse_add_options() {
+  local -n options="$1"
+  shift
   while [[ $# -gt 0 ]]; do
     [[ $# -ge 2 ]] || fail "option '$1' needs a value"
     case "$1" in
-      --run) run="$2" ;; --tab) tab="$2" ;; --icon) icon="$2" ;;
+      --run | --tab | --icon) options[${1#--}]="$2" ;;
       *) fail "unknown option '$1'" ;;
     esac
     shift 2
   done
-  [[ -n "$name" && -n "$run" ]] || fail "usage: retro-console add <name> --run <command> [--tab <tab>] [--icon <icon>]"
-  write_launcher "$name" "$run" "${tab:-$name}" "$icon"
+}
+
+# usage: add <name> --run <command> [--tab <tab>] [--icon <icon>]
+add() {
+  local name="${1:-}"
+  shift || true
+  local -A opts=([icon]=utilities-terminal)
+  parse_add_options opts "$@"
+  [[ -n "$name" && -n "${opts[run]:-}" ]] || fail "usage: retro-console add <name> --run <command> [--tab <tab>] [--icon <icon>]"
+  opts[icon]="$(icon_value "${opts[icon]}")" || exit 1
+  write_launcher "$name" "${opts[run]}" "${opts[tab]:-$name}" "${opts[icon]}"
+}
+
+# An image path must be absolute in a .desktop file; icon theme names pass through
+icon_value() {
+  local icon="$1"
+  [[ "$icon" == "~/"* ]] && icon="$HOME/${icon#"~/"}"
+  if [[ "$icon" == */* ]]; then
+    [[ -f "$icon" ]] || fail "icon image not found: $1"
+    icon="$(readlink -f "$icon")"
+  fi
+  echo "$icon"
 }
 
 write_launcher() {
