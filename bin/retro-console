@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+RC_LIB="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../lib" && pwd)"
+for module in common theme session launchers; do
+  source "$RC_LIB/$module.sh"
+done
+
+usage() {
+  cat <<EOF
+Usage: retro-console <command>
+
+  add <name> --run <command> [--tab <tab>] [--icon <icon>]
+                       create a desktop launcher; launchers with the same --tab share it
+  list                 show your launchers
+  remove <name>        delete a launcher
+  run <tab> <command>  run a command in a tab of the console window
+  setup                apply ~/.config/retro-console/config (theme, font, size, title)
+EOF
+}
+
+main() {
+  load_config
+  local command="${1:-help}"
+  shift || true
+  case "$command" in
+    add | list | remove | run | launch | setup) "$command" "$@" ;;
+    help | -h | --help) usage ;;
+    *) usage; exit 1 ;;
+  esac
+}
+
+main "$@"
