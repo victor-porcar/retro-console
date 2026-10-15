@@ -4,14 +4,7 @@ Desktop launchers for your long-running terminal commands (VPN, port-forwards, l
 services, log tails...) that open as **tabs of a single 80s-style terminal window**,
 green phosphor on black, instead of a pile of windows.
 
-```
-┌─ Consoles ───────────────────────────────────────────────┐
-│ Initialization Sequence Completed                         │
-│ ==> pod/api-6d8f9c7b4-x2k4p  localhost:8080 -> 8080       │
-│                                                           │
-│ [1:VPN]* [2:port-forwards] [3:DBs]                  12:41 │
-└───────────────────────────────────────────────────────────┘
-```
+![retro-console window: one tab per group, the active one in green, yellow when another tab has new output](docs/screenshot.svg)
 
 - **One window**: the first launcher opens it, the next ones add tabs.
 - **Groups**: launchers with the same tab share it. Clicking *Start* or *Stop* of the same

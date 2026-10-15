@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="683" height="298" font-family="DejaVu Sans Mono, monospace" font-size="14">
+<g transform="translate(0,0)">
+<rect width="683.2" height="298" rx="10" fill="#1e1e1e"/>
+<text x="341.6" y="21" fill="#ccc" text-anchor="middle" font-family="sans-serif" font-size="13">Consoles</text>
+<rect y="32" width="683.2" height="266" fill="#000"/>
+<text x="14.0" y="63.0" fill="#33FF33" font-weight="normal">$ vpn</text>
+<text x="14.0" y="80.0" fill="#33FF33" font-weight="normal">[sudo] password for dev:</text>
+<text x="14.0" y="97.0" fill="#33FF33" font-weight="normal">2026-10-15 09:12:01 TUN/TAP device tun0 opened</text>
+<text x="14.0" y="114.0" fill="#33FF33" font-weight="normal">2026-10-15 09:12:02 Initialization Sequence Completed</text>
+<text x="14.0" y="131.0" fill="#33FF33" font-weight="normal">=====&gt;&gt; SUCCESS =====&gt; connected</text>
+<text x="14.0" y="148.0" fill="#33FF33" font-weight="normal"></text>
+<text x="14.0" y="165.0" fill="#33FF33" font-weight="normal"></text>
+<rect x="14.0" y="135" width="8.4" height="17" fill="#33FF33"/>
+<rect x="14.0" y="271" width="58.8" height="17" fill="#33FF33"/>
+<text x="22.4" y="284.0" fill="#000" font-weight="bold">1:VPN</text>
+<rect x="72.8" y="271" width="142.8" height="17" fill="#FFFF00"/>
+<text x="81.2" y="284.0" fill="#000" font-weight="normal">2:port-forwards</text>
+<rect x="215.6" y="271" width="109.2" height="17" fill="#000"/>
+<text x="224.0" y="284.0" fill="#33FF33" font-weight="normal">3:local-env</text>
+<text x="618.8" y="284.0" fill="#33FF33" font-weight="normal">09:12</text>
+</g>
+</svg>
